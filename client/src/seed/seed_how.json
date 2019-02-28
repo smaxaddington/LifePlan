@@ -1,0 +1,37 @@
+[{
+    "_id": ObjectId("6a8245999f63531c3ce288ba"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Realize physical potential",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  },
+  {
+    "_id": ObjectId("6a8245999f63531c3ce288bb"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Realize mental potential",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  },
+  {
+    "_id": ObjectId("6a8245999f63531c3ce288bc"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Cultivate compassion",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  },
+  {
+    "_id": ObjectId("6a8245999f63531c3ce288bd"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Network with others",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  },
+  {
+    "_id": ObjectId("6a8245999f63531c3ce288be"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Realize career potential",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  },
+  {
+    "_id": ObjectId("6a8245999f63531c3ce288bf"),
+    "whyId": ObjectId("5a8245999f63531c3ce288ba"),
+    "statement": "Realize spiritual/personal potential",
+    "createdOn": ISODate("2019-02-27T00:00:00.000+0000")
+  }
+]

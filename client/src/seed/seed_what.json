@@ -1,0 +1,109 @@
+[
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288ba"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Cardio", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288bb"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Climb", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288bc"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Lift", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288bd"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Stretch", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288be"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Nutrition", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288bf"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288ba"), 
+        "statement" : "Sleep", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c0"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bb"), 
+        "statement" : "Maintain a ranked list of skills I have already developed by order of how I want to prioritize them going forward", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c1"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bb"), 
+        "statement" : "Identify new skills I want to learn and make time for them", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c2"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bb"), 
+        "statement" : "Work on academic interests I have already developed", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c3"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bc"), 
+        "statement" : "Identify issues within the community that are not being addressed adequately", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c4"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bc"), 
+        "statement" : "Identify issues internationally that are not being addressed adequately", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c5"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bd"), 
+        "statement" : "Maintain a contact list", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c6"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bd"), 
+        "statement" : "Find opportunities to meet people in meaningful ways", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c7"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288be"), 
+        "statement" : "Contribute fullest effort to my work responsibilities", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c8"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288be"), 
+        "statement" : "Maintain a list of different careers I might consider based on my ability to affect change", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288c9"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bf"), 
+        "statement" : "Meditate", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    },
+    { 
+        "_id" : ObjectId("1a8245999f63531c3ce288ca"), 
+        "howId" : ObjectId("6a8245999f63531c3ce288bf"), 
+        "statement" : "Read", 
+        "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+    }
+]

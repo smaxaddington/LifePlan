@@ -1,0 +1,114 @@
+const Reflection = require('../../models/reflection')
+const mongoose = require('mongoose')
+
+module.exports = function (router) {
+
+    router.get('/reflection/how/', function (req, res) {
+        const howId = req.get('howId')
+        console.log(howId)
+    
+        const qry = {
+          relatedItemId: howId,
+          relatedItemType: "how"
+        }
+    
+        Reflection.find(qry)
+          .exec()
+          .then(docs => res.status(200)
+            .json(docs))
+          .catch(err => res.status(500)
+            .json({
+              message: 'Error finding ref',
+              error: err
+            }))
+      })
+    router.get('/reflection/what/', function (req, res) {
+        const whatId = req.get('whatId')
+        console.log(whatId)
+
+        const qry = {
+            relatedItemId: whatId,
+            relatedItemType: "what"
+        }
+
+        Reflection.find(qry)
+            .exec()
+            .then(docs => res.status(200)
+            .json(docs))
+            .catch(err => res.status(500)
+            .json({
+                message: 'Error finding ref',
+                error: err
+            }))
+    })
+    router.get('/reflection/why/', function (req, res) {
+        const whyId = req.get('whyId')
+        console.log(whyId)
+
+        const qry = {
+            relatedItemId: whyId,
+            relatedItemType: "why"
+        }
+
+        Reflection.find(qry)
+            .exec()
+            .then(docs => res.status(200)
+            .json(docs))
+            .catch(err => res.status(500)
+            .json({
+                message: 'Error finding ref',
+                error: err
+            }))
+    })
+    router.get('/reflection/goal/', function (req, res) {
+        const goalId = req.get('goalId')
+        console.log(goalId)
+
+        const qry = {
+            relatedItemId: goalId,
+            relatedItemType: "goal"
+        }
+
+        Reflection.find(qry)
+            .exec()
+            .then(docs => res.status(200)
+            .json(docs))
+            .catch(err => res.status(500)
+            .json({
+                message: 'Error finding ref',
+                error: err
+            }))
+    })
+    
+    router.post('/reflection', function (req, res) {
+        let reflection = new Reflection(req.body)
+        reflection.save(function (err, reflection) {
+            if (err) return console.log(err)
+            res.status(200).json(reflection)
+        })
+    })
+    router.get('/reflection/:id', function (req, res) {
+      Reflection.findById(req.params.id).exec()
+        .then(docs => res.status(200)
+          .json(docs))
+        .catch(err => res.status(500)
+          .json({
+            message: 'Error finding ref',
+            error: err
+          }))
+    })
+    router.put('/reflection/:id', function (req, res) {
+        let qry = { _id: req.params.id }
+        let doc = {
+            relatedItemId: req.body.relatedItemId,
+            relatedItemType: req.body.relatedItemType,
+            createdOn: req.body.createdOn,
+            statement: req.body.statement,
+          
+        }
+        Reflection.update(qry, doc, function (err, respRaw) {
+          if (err) return console.log(err)
+          res.status(200).json(respRaw)
+        })
+      })
+}

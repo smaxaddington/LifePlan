@@ -1,0 +1,6 @@
+{ 
+    "_id" : ObjectId("5a8245999f63531c3ce288ba"), 
+    "userId" : ObjectId("5a777f0a75f64a1698221d98"), 
+    "statement" : "To realize my own potential in order to assist other in realizing theirs", 
+    "createdOn" : ISODate("2019-02-27T00:00:00.000+0000")
+}
