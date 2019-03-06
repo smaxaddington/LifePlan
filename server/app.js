@@ -3,12 +3,12 @@ const app = express()
 const api = require('./api') //picks up routes bundled in the api package
 const morgan = require('morgan') //logs requests to api
 const bodyParser = require('body-parser') //parse request bodies
-
+const cors = require('cors')
 app.set('port', (process.env.PORT ||8081)) //tells it which port to listen on 
 
 app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({extended : false}))
-
+app.use(cors())
 app.use('/api', api) 
 app.use(express.static('static')) //gives access to static files
 

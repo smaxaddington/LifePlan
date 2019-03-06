@@ -1,6 +1,7 @@
 const How = require('../../models/how')
 const mongoose = require('mongoose')
 
+
 module.exports = function (router) {
 
     router.get('/how/why/', function (req, res) {
@@ -29,6 +30,21 @@ module.exports = function (router) {
             res.status(200).json(how)
         })
     })
+    router.delete('/how', function (req, res) {
+      How.findByIdAndRemove(req.headers.id, (err, howw) => {
+        // As always, handle any potential errors:
+        if (err) return res.status(500).send(err);
+        // We'll create a simple object to send back with a message and the id of the document that was removed
+        // You can really do this however you want, though.
+        const response = {
+            message: "Todo successfully deleted",
+            id: req.headers.id
+        };
+        console.log(response)
+        return res.status(200).send(response);
+    });
+  })
+ 
     router.get('/how/:id', function (req, res) {
       How.findById(req.params.id).exec()
         .then(docs => res.status(200)
@@ -51,4 +67,5 @@ module.exports = function (router) {
           res.status(200).json(respRaw)
         })
       })
+    
 }
