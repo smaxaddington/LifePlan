@@ -10,11 +10,17 @@ import Whats from '@/components/Whats'
 import What from '@/components/What'
 import AddHow from '@/components/AddHow'
 import AddWhat from '@/components/AddWhat'
+import AddGoal from '@/components/AddGoal'
 import EditWhat from '@/components/EditWhat'
 import Reflections from '@/components/Reflections'
 import Reflection from '@/components/Reflection'
 import AddReflection from '@/components/addReflection'
 import EditReflection from '@/components/editReflection'
+import EditGoal from '@/components/editGoal'
+import CompleteGoal from '@/components/completeGoal'
+import Goals from '@/components/Goals'
+import Goal from '@/components/Goal'
+import AddToCalendar from '@/components/AddToCalendar'
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +36,31 @@ export default new Router({
       component: Reflections
     },
     {
+      path: '/addToCalendar',
+      name: 'AddToCalendar',
+      component: AddToCalendar
+    },
+    {
+      path: '/goals',
+      name: 'Goals',
+      component: Goals
+    },
+    {
+      path: '/goal',
+      name: 'Goal',
+      component: Goal
+    },
+    {
+      path: '/addGoal',
+      name: 'addGoal',
+      component: AddGoal
+    },
+    {
+      path: '/completeGoal',
+      name: 'completeGoal',
+      component: CompleteGoal
+    },
+    {
       path: '/reflection',
       name: 'Reflection',
       component: Reflection
@@ -38,6 +69,11 @@ export default new Router({
       path: '/editReflection',
       name: 'EditReflection',
       component: EditReflection
+    },
+    {
+      path: '/editGoal',
+      name: 'EditGoal',
+      component: EditGoal
     },
     {
       path: '/addReflection',

@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <h1>Whats</h1>
+    <div>
+    <h1>Goals</h1>
     <v-container>
-      <v-card flat v-for="what in whats" :key="what._id">
+      <v-card flat v-for="goal in goals" :key=goal._id>
         <v-layout row wrap>
-          <v-flex xs10>
-            <div>{{ what.statement }}</div>
+          <v-flex xs6>
+            <div>{{goal.expectedOutcome}}</div>
+          </v-flex>
+          <v-flex xs4>
+            <div>{{goal.expectedCompletionDate.substr(0, 10)}}</div>
           </v-flex>
           <v-flex xs2>
-            <v-btn @click="goToWhat(what._id)">Go to What</v-btn>
+            <v-btn @click="goToGoal(goal._id)">Go to Goal</v-btn>
           </v-flex>
 
         </v-layout>
@@ -16,9 +19,10 @@
       </v-card>
 
       <v-layout row wrap>
+        
         <v-flex xs12 md6>
-          <v-btn @click="addWhat">
-              Add What
+          <v-btn @click="addGoal">
+              Add Goal
           </v-btn>
         </v-flex>
         <v-flex xs12 md6>
@@ -41,30 +45,29 @@ export default {
     // goToHows: function () {
     //   this.$router.push({ path: '/hows' })
     // },
-    getWhats: function () {
-      this.$store.dispatch('getWhats')
-      // this.hows = this.$store.state.hows.hows
+    getGoals: function () {
+      this.$store.dispatch('getGoals')
     },
     returnToHow: function () {
-      this.$router.push({path: '/how'}) // add howId to path
+      this.$router.push({path: '/how'})
     },
-    goToWhat: function (id) {
-      this.$store.dispatch('getWhat', {whatId: id})
-      this.$router.push({path: '/what'})
+    goToGoal: function (id) {
+      this.$store.dispatch('getGoal', {goalId: id})
+      this.$router.push({path: '/goal'})
     },
-    addWhat: function () {
-      this.$router.push({path: '/addWhat'})
+    addGoal: function () {
+      this.$router.push({path: '/addGoal'})
     }
   },
   beforeMount () {
-    this.getWhats()
+    this.getGoals()
   },
   props: {
     source: String
   },
   computed: {
-    whats () {
-      return this.$store.state.whats.whats
+    goals () {
+      return this.$store.state.goals.goals
     }
   }
 }

@@ -10,9 +10,9 @@ import store from './store'
 Vue.axios = Vue.prototype.$http = axios.create({
   baseURL: 'http://localhost:8081/api'
 })
-
+var AddToCalendar = require('vue-add-to-calendar')
 Vue.config.productionTip = false
-
+Vue.use(AddToCalendar)
 Vue.use(Vuetify)
 /* eslint-disable no-new */
 new Vue({

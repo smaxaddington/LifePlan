@@ -1,12 +1,27 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <v-app class="grey lighten-4">
+    <Navbar />
+
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; Mental Mute LLC</span>
+    </v-footer>
+
+  </v-app>
 </template>
 
 <script>
+import Navbar from './components/Navbar'
 export default {
-  name: 'App'
+  components: {Navbar},
+  name: 'App',
+  data () {
+    return {
+
+    }
+  }
 }
 </script>
 

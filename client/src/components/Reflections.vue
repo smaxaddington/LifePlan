@@ -1,89 +1,62 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>contact_mail</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Reflections</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-        <v-flex>
-            <ul id=hows>
-                <li v-for="reflection in reflections" :key=reflection._id @click="goToReflection(reflection._id)">
-                    <v-btn>
-                        {{reflection.statement}}
-                    </v-btn>
-                </li>
-            </ul>
-            <v-btn @click="returnToItem">
-                Return to {{relatedItemType}}
-            </v-btn>
-           
-        </v-flex>
-        <v-btn @click="addReflection">
-                Add Reflection
-            </v-btn>
+  <div>
+    <h1>Reflections</h1>
+    <v-container>
+      <v-card flat v-for="ref in reflections" :key="ref._id">
+        <v-layout row wrap>
+          <v-flex xs8>
+            <div>{{ ref.statement }}</div>
+          </v-flex>
+          <v-flex xs4>
+            <v-btn @click="goToReflection(ref._id)">Go to Reflection</v-btn>
+          </v-flex>
+
         </v-layout>
-      </v-container>
-    </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
-  </v-app>
+        <v-divider></v-divider>
+      </v-card>
+
+      <v-layout row wrap>
+        <v-flex xs12 md6>
+          <v-btn @click="addReflection">
+              Add Reflection
+          </v-btn>
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-btn @click="returnToItem">
+            Return to {{relatedItemType}}
+          </v-btn>
+        </v-flex>
+      </v-layout>
+
+    </v-container>
+  </div>
 </template>
 <script>
 export default {
-    methods: {
-        goToReflection: function (id) {
-            this.$store.dispatch('getReflection', {reflectionId: id})
-            this.$router.push({path: '/reflection'})
-          },
-        returnToItem: function () {
-            this.$router.push({path: '/' + this.relatedItemType})
-        },
-        addReflection: function () {
-        this.$router.push({path: '/addReflection'})
-        }
+  methods: {
+    goToReflection: function (id) {
+      this.$store.dispatch('getReflection', {reflectionId: id})
+      this.$router.push({path: '/reflection'})
     },
-    computed: {
-      reflections() {
-        return this.$store.state.reflections.reflections
-      },
-      relatedItemType() {
-          return this.$store.state.reflections.relatedItemType
-      },
-      relatedItemId() {
-          return this.$store.state.reflections.relatedItemId
-      }
+    returnToItem: function () {
+      this.$router.push({path: '/' + this.relatedItemType})
     },
-    data: () => ({
+    addReflection: function () {
+      this.$router.push({path: '/addReflection'})
+    }
+  },
+  computed: {
+    reflections () {
+      return this.$store.state.reflections.reflections
+    },
+    relatedItemType () {
+      return this.$store.state.reflections.relatedItemType
+    },
+    relatedItemId () {
+      return this.$store.state.reflections.relatedItemId
+    }
+  },
+  data: () => ({
     drawer: null
   })
 }

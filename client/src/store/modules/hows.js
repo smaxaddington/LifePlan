@@ -48,7 +48,7 @@ const actions = {
         console.log('Darn! There was an error getting how: ' + err)
       })
   },
-  deleteHow ({ commit, dispatch, state, rootState },) {
+  deleteHow ({ commit, dispatch, state, rootState }) {
     // Add the logged in userId to the transaction payload...
     Vue.axios.delete('/how/', {headers: {'id': state.howId}})
       .then((resp) => {

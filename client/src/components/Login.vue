@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12>
-        <h2>Login to Globomantics</h2>
+        <h2>Login to Catalyze</h2>
       </v-flex>
       <v-spacer></v-spacer>
       <v-flex xs12 sm6 offset-sm3>
@@ -58,7 +58,8 @@ export default {
   computed: {
     isLoggedIn () {
       return this.$store.getters.isLoggedIn
-    },
+    },
+
     loginError () {
       return this.$store.getters.loginError
     }

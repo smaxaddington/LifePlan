@@ -21,7 +21,6 @@ module.exports = function (router) {
               error: err
             }))
       })
-    
     router.post('/what', function (req, res) {
         let what = new What(req.body)
         what.save(function (err, what) {

@@ -28,9 +28,29 @@ const actions = {
         if (data && data.length > 0) {
           // console.log(data[0])
           commit('whats', data)
+        } else {
+          commit('clearWhatArray')
         }
-        else {
-            commit('clearWhatArray')
+      })
+      .catch((err) => {
+        console.log('Darn! There was an error getting whats: ' + err)
+      })
+  },
+  getAllWhats ({ commit, state, rootState }) {
+    // Make API call... Pass in selected Month and Year + UserId in hearder...
+    // Once transaction data is retrieved... commit the mutation to update state...
+    this.state.whatHowId = ''
+    Vue.axios.get('/what/how/',
+      {headers: {'howId': rootState.hows.howId}})
+      .then((resp) => {
+        let data = resp.data
+        // let whatStatement =
+
+        if (data && data.length > 0) {
+          // console.log(data[0])
+          commit('whats', data)
+        } else {
+          commit('clearWhatArray')
         }
       })
       .catch((err) => {
@@ -51,7 +71,7 @@ const actions = {
         console.log('Darn! There was an error getting what: ' + err)
       })
   },
-  deleteWhat ({ commit, dispatch, state, rootState },) {
+  deleteWhat ({ commit, dispatch, state, rootState }) {
     // Add the logged in userId to the transaction payload...
     Vue.axios.delete('/what/', {headers: {'id': state.whatId}})
       .then((resp) => {

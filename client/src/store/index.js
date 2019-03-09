@@ -6,6 +6,7 @@ import hows from './modules/hows'
 import user from './modules/user'
 import whats from './modules/whats'
 import reflections from './modules/reflections'
+import goals from './modules/goals'
 import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
@@ -20,7 +21,8 @@ export default new Vuex.Store({
     hows,
     user,
     whats,
-    reflections
+    reflections,
+    goals
   },
   plugins: [vuexPersist.plugin]
 })

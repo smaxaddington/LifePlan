@@ -1,33 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>contact_mail</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>What</v-toolbar-title>
-    </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
         <v-layout
@@ -46,17 +18,28 @@
         <v-flex>
         <v-btn @click="goToReflections">Reflections</v-btn>
         </v-flex>
-        
-
+        <a @click="goToCalendar"> calendar! </a>
         <v-flex>
           {{what}}
         </v-flex>
+        <div>
+        <add-to-calendar title=what
+                 location=""
+                 :start="new Date()"
+                 :end="new Date((new Date).setDate((new Date).getDate() + 1))"
+                 details=""
+                 inline-template>
+        <div>
+
+            <google-calendar id="google-calendar">
+            <i class="fa fa-google"></i> Add to Google calendar
+            </google-calendar>
+        </div>
+        </add-to-calendar>
+    </div>
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -75,27 +58,33 @@ export default {
       this.$router.push({ path: '/editWhat' })
     },
     returnToWhats: function () {
-        this.$router.push({path: '/whats'})
+      this.$router.push({path: '/whats'})
+    },
+    goToCalendar: function () {
+      window.open(
+        'https://calendar.google.com',
+        '_blank' // <- This is what makes it open in a new window.
+      )
     },
     goToReflections: function () {
-        this.$store.dispatch('getReflections', {relatedItemType: 'what', relatedItemId: this.$store.state.whats.whatId})
-        this.$router.push({path: '/reflections'})
+      this.$store.dispatch('getReflections', {relatedItemType: 'what', relatedItemId: this.$store.state.whats.whatId})
+      this.$router.push({path: '/reflections'})
     }
   },
-//   beforeMount () {
-//     this.getWhat()
-//   },
+  //   beforeMount () {
+  //     this.getWhat()
+  //   },
   data: () => ({
-    drawer: null
+
   }),
   props: {
     source: String
   },
   computed: {
-      what() {
-        //this.$store.dispatch('getWhat')
-        return this.$store.state.whats.whatStatement
-      }
+    what () {
+      // this.$store.dispatch('getWhat')
+      return this.$store.state.whats.whatStatement
+    }
   }
 }
 </script>

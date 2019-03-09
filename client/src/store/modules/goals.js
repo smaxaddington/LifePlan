@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 const state = {
   goals: [],
-  howId: '',
+  goalHowId: '',
   goalId: '',
   expectedOutcome: '',
   actualOutcome: '',
@@ -11,7 +11,7 @@ const state = {
 }
 
 const getters = {
-  howId: state => state.howId,
+  goalHowId: state => state.goalHowId,
   goals: state => state.goals,
   goalId: state => state.goalId,
   expectedOutcome: state => state.expectedOutcome,
@@ -24,8 +24,9 @@ const actions = {
   getGoals ({ commit, state, rootState }, payload) {
     // Make API call... Pass in selected Month and Year + UserId in hearder...
     // Once transaction data is retrieved... commit the mutation to update state...
-    this.state.howId = rootState.hows.howId
-    Vue.axios.get('/what/how/',
+    this.state.goalHowId = rootState.hows.howId
+    console.log('getting goals')
+    Vue.axios.get('/goal/how/',
       {headers: {'howId': rootState.hows.howId}})
       .then((resp) => {
         let data = resp.data
@@ -33,69 +34,96 @@ const actions = {
 
         if (data && data.length > 0) {
           // console.log(data[0])
-          commit('whats', data)
-        }
-        else {
-            commit('clearWhatArray')
+          commit('goals', data)
+        } else {
+          commit('clearGoalArray')
         }
       })
       .catch((err) => {
-        console.log('Darn! There was an error getting whats: ' + err)
+        console.log('Darn! There was an error getting goals: ' + err)
       })
   },
-  async getWhat ({ commit, rootState }, payload) {
+  async getGoal ({ commit, rootState }, payload) {
     // Make API call... Pass in selected Month and Year + UserId in hearder...
     // Once transaction data is retrieved... commit the mutation to update state...
-    this.state.whatHowId = rootState.hows.howId
-    const whatId = payload.whatId
-    const whatStmt = '/what/' + whatId
-    Vue.axios.get(whatStmt).then(function (resp) {
+    const goalId = payload.goalId
+    const goalStmt = '/goal/' + goalId
+    Vue.axios.get(goalStmt).then(function (resp) {
       let data = resp.data
-      commit('what', data)
+      commit('goal', data)
     })
       .catch((err) => {
-        console.log('Darn! There was an error getting what: ' + err)
+        console.log('Darn! There was an error getting goal: ' + err)
       })
   },
-  deleteWhat ({ commit, dispatch, state, rootState },) {
+  deleteGoal ({ commit, dispatch, state, rootState }) {
     // Add the logged in userId to the transaction payload...
-    Vue.axios.delete('/what/', {headers: {'id': state.whatId}})
+    Vue.axios.delete('/goal/', {headers: {'id': state.goalId}})
       .then((resp) => {
-        dispatch('getWhats')
+        dispatch('getGoals')
       })
       .catch((err) => {
-        console.log('Error saving what')
+        console.log('Error deleting goal')
         console.log(err)
       })
   },
-  updateWhat ({ commit, dispatch, state, rootState }, payload) {
+  updateGoal ({ commit, dispatch, state, rootState }, payload) {
     // TODO: encrypt the user's password
-    const whatObj = {
-      'statement': payload,
-      'howId': state.whatHowId,
-      '_id': state.whatId,
+    const goalObj = {
+      'expectedOutcome': payload.expectedOutcome,
+      'actualOutcome': payload.actualOutcome,
+      'expectedCompletionDate': payload.expectedCompletionDate,
+      'actualCompletionDate': payload.actualCompletionDate,
+      'relatedItemId': rootState.hows.howId,
+      'relatedItemType': 'how',
+      '_id': state.goalId,
       'createdOn': '03/1/2019'
     }
-    Vue.axios.put('/what/' + state.whatId, whatObj)
+    Vue.axios.put('/goal/' + state.goalId, goalObj)
       .then((resp) => {
-        dispatch('getWhat', {whatId: state.whatId})
-        dispatch('getWhats')
+        dispatch('getGoal', {goalId: state.goalId})
+        dispatch('getGoals')
       })
       .catch((err) => {
         console.log(err)
       })
   },
-  saveWhat ({ commit, dispatch, state, rootState }, payload) {
-    // TODO: encrypt the user's password'
-    const whatObj = {
-      'statement': payload.statement,
-      'howId': rootState.hows.howId,
+  completeGoal ({ commit, dispatch, state, rootState }, payload) {
+    // TODO: encrypt the user's password
+    const goalObj = {
+      'expectedOutcome': payload.expectedOutcome,
+      'actualOutcome': payload.actualOutcome,
+      'expectedCompletionDate': payload.expectedCompletionDate,
+      'actualCompletionDate': payload.actualCompletionDate,
+      'relatedItemId': rootState.hows.howId,
+      'relatedItemType': 'how',
+      '_id': state.goalId,
       'createdOn': '03/1/2019'
     }
-    Vue.axios.post('/what', whatObj)
+    Vue.axios.put('/goal/' + state.goalId, goalObj)
       .then((resp) => {
-        console.log('we in here?')
-        dispatch('getWhats')
+        dispatch('getGoal', {goalId: state.goalId})
+        dispatch('getGoals')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
+  saveGoal ({ commit, dispatch, state, rootState }, payload) {
+    // TODO: encrypt the user's password'
+    const goalObj = {
+      'expectedOutcome': payload.expectedOutcome,
+      'actualOutcome': payload.actualOutcome,
+      'expectedCompletionDate': payload.expectedCompletionDate,
+      'actualCompletionDate': payload.actualCompletionDate,
+      'relatedItemId': rootState.hows.howId,
+      'relatedItemType': 'how',
+      'createdOn': '03/1/2019'
+    }
+    console.log(goalObj)
+    Vue.axios.post('/goal', goalObj)
+      .then((resp) => {
+        dispatch('getGoals')
       })
       .catch((err) => {
         console.log(err)
@@ -104,19 +132,22 @@ const actions = {
 }
 
 const mutations = {
-  whats (state, data) {
+  goals (state, data) {
     // Start by clearing the array...
-    state.whats = data
+    state.goals = data
   },
-  what (state, data) {
+  goal (state, data) {
     // Start by clearing the array...
-    state.whatId = data._id
-    state.whatStatement = data.statement
-    state.whatHowId = data.howId
+    state.goalId = data._id
+    state.expectedOutcome = data.expectedOutcome
+    state.actualOutcome = data.actualOutcome
+    state.expectedCompletionDate = data.expectedCompletionDate
+    state.actualCompletionDate = data.actualCompletionDate
+    state.goalHowId = data.howId
   },
-  clearWhatArray (state) {
+  clearGoalArray (state) {
     // Start by clearing the array...
-    state.whats = []
+    state.goals = []
   }
 
 }
