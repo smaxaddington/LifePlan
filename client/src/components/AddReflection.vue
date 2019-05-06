@@ -1,6 +1,10 @@
 <template>
   <v-app id="inspire">
     <v-content>
+      <font size = 6 color = "grey">
+        ADD REFLECTION
+      </font>
+
         <v-flex>
             {{this.statement}}
         </v-flex>

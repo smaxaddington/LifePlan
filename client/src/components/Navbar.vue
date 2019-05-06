@@ -4,12 +4,10 @@
     <v-toolbar flat app>
       <v-toolbar-side-icon @click="drawer = !drawer" class="grey--text"></v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">Catalyze</span>
+        <span class="font-weight-light">Life Plan</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat color="grey">
-        <span>Sign Out</span>
-        <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-toolbar>
 
@@ -38,6 +36,8 @@ export default {
           'https://calendar.google.com',
           '_blank' // <- This is what makes it open in a new window.
         )
+      } else if (text === 'Goals') {
+        this.$store.dispatch('getAllGoals')
       }
     }
   },
@@ -47,7 +47,8 @@ export default {
       links: [
         { icon: 'whatshot', text: 'Why', route: '/why' },
         { icon: 'waves', text: 'Hows', route: '/hows' },
-        { icon: 'calendar_today', text: 'Calendar', route: '/why' }
+        { icon: 'calendar_today', text: 'Calendar', route: '/why' },
+        { icon: 'ballot', text: 'Goals', route: '/goals' }
       ]
     }
   }

@@ -7,7 +7,8 @@ const state = {
   expectedOutcome: '',
   actualOutcome: '',
   expectedCompletionDate: '',
-  actualCompletionDate: ''
+  actualCompletionDate: '',
+  showReturn: 1
 }
 
 const getters = {
@@ -25,7 +26,6 @@ const actions = {
     // Make API call... Pass in selected Month and Year + UserId in hearder...
     // Once transaction data is retrieved... commit the mutation to update state...
     this.state.goalHowId = rootState.hows.howId
-    console.log('getting goals')
     Vue.axios.get('/goal/how/',
       {headers: {'howId': rootState.hows.howId}})
       .then((resp) => {
@@ -35,6 +35,29 @@ const actions = {
         if (data && data.length > 0) {
           // console.log(data[0])
           commit('goals', data)
+        } else {
+          commit('clearGoalArray')
+        }
+      })
+      .catch((err) => {
+        console.log('Darn! There was an error getting goals: ' + err)
+      })
+  },
+  setHowId ({ commit, state, rootState }) {
+    // Make API call... Pass in selected Month and Year + UserId in hearder...
+    // Once transaction data is retrieved... commit the mutation to update state...
+    rootState.hows.howId = this.state.goalHowId
+  },
+  getAllGoals ({ commit, state, rootState }, payload) {
+    // Make API call... Pass in selected Month and Year + UserId in hearder...
+    // Once transaction data is retrieved... commit the mutation to update state...
+    Vue.axios.get('/goal/')
+      .then((resp) => {
+        let data = resp.data
+        // let whatStatement =
+        if (data && data.length > 0) {
+          // console.log(data[0])
+          commit('allGoals', data)
         } else {
           commit('clearGoalArray')
         }
@@ -56,11 +79,15 @@ const actions = {
         console.log('Darn! There was an error getting goal: ' + err)
       })
   },
-  deleteGoal ({ commit, dispatch, state, rootState }) {
+  deleteGoal ({ commit, dispatch, state, rootState }, payload) {
     // Add the logged in userId to the transaction payload...
     Vue.axios.delete('/goal/', {headers: {'id': state.goalId}})
       .then((resp) => {
-        dispatch('getGoals')
+        if (state.showReturn === 1) {
+          dispatch('getGoals')
+        } else {
+          dispatch('getAllGoals')
+        }
       })
       .catch((err) => {
         console.log('Error deleting goal')
@@ -87,6 +114,9 @@ const actions = {
       .catch((err) => {
         console.log(err)
       })
+  },
+  setShowReturn ({ commit, dispatch, state, rootState }) {
+    commit('showReturn')
   },
   completeGoal ({ commit, dispatch, state, rootState }, payload) {
     // TODO: encrypt the user's password
@@ -120,7 +150,6 @@ const actions = {
       'relatedItemType': 'how',
       'createdOn': '03/1/2019'
     }
-    console.log(goalObj)
     Vue.axios.post('/goal', goalObj)
       .then((resp) => {
         dispatch('getGoals')
@@ -134,6 +163,13 @@ const actions = {
 const mutations = {
   goals (state, data) {
     // Start by clearing the array...
+    state.showReturn = 1
+    state.goals = data
+  },
+  allGoals (state, data) {
+    // Start by clearing the array...
+    state.goalHowId = ''
+    state.showReturn = 0
     state.goals = data
   },
   goal (state, data) {
@@ -144,6 +180,10 @@ const mutations = {
     state.expectedCompletionDate = data.expectedCompletionDate
     state.actualCompletionDate = data.actualCompletionDate
     state.goalHowId = data.howId
+  },
+  showReturn (state, data) {
+    // Start by clearing the array...
+    state.showReturn = 1
   },
   clearGoalArray (state) {
     // Start by clearing the array...

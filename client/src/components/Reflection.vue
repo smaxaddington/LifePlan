@@ -1,34 +1,34 @@
 <template>
-  <v-app id="inspire">
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-        <v-flex>
-          <v-btn @click="goToItem">{{relatedItemType}}</v-btn>
+  <div>
+    <font size = 6 color = "grey">
+      REFLECTION
+    </font>
+
+    <div>{{reflection}}</div>
+    <div>{{createdOn}}</div>
+    <v-container>
+      <v-layout row wrap>
+        <v-flex xs6 md3>
+          <v-btn @click="editReflection">
+            Edit
+          </v-btn>
         </v-flex>
-        <v-flex>
-          <v-btn @click="editReflection">Edit</v-btn>
+        <v-flex xs6 md3>
+          <v-btn @click="goToReflections">
+            Reflections
+          </v-btn>
         </v-flex>
-        <v-flex>
+        <v-flex xs6 md3>
           <v-btn @click="deleteReflection">Delete</v-btn>
         </v-flex>
         <v-flex>
-        <v-btn @click="goToReflections">Reflections</v-btn>
+          <v-btn @click="goToItem">
+            {{relatedItemType}}
+          </v-btn>
         </v-flex>
-
-        <v-flex>
-          {{reflection}}
-        </v-flex>
-        <v-flex>
-          {{relatedItemStmt}}
-        </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -74,6 +74,11 @@ export default {
     relatedItemStmt () {
       console.log(this.$store.state.reflections.relatedItemStmt)
       return this.$store.state.reflections.relatedItemStmt
+    },
+    createdOn () {
+      var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+      var date = new Date(this.$store.state.reflections.createdOn)
+      return date.toLocaleDateString('en-US', options)
     }
   }
 }

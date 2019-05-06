@@ -22,6 +22,18 @@ module.exports = function (router) {
               error: err
             }))
       })
+      router.get('/goal/', function (req, res) {
+   
+        Goal.find()
+          .exec()
+          .then(docs => res.status(200)
+            .json(docs))
+          .catch(err => res.status(500)
+            .json({
+              message: 'Error finding goal',
+              error: err
+            }))
+      })
       router.delete('/goal', function (req, res) {
         Goal.findByIdAndRemove(req.headers.id, (err, howw) => {
           // As always, handle any potential errors:

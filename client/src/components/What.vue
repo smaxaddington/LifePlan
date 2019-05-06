@@ -1,29 +1,35 @@
 <template>
-  <v-app id="inspire">
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-        <v-flex>
-          <v-btn @click="editWhat">Edit</v-btn>
+  <div>
+
+    <font size = 6 color = "grey">
+      WHAT
+    </font>
+
+    <br>
+    <font size = 6>{{what}}</font>
+    <v-container>
+      <v-layout row wrap>
+        <v-flex xs6 md4>
+          <v-btn @click="editWhat">
+            Edit
+          </v-btn>
         </v-flex>
-        <v-flex>
+        <v-flex xs6 md4>
+          <v-btn @click="goToReflections">
+            Reflections
+          </v-btn>
+        </v-flex>
+        <v-flex xs6 md4>
           <v-btn @click="deleteWhat">Delete</v-btn>
         </v-flex>
-        <v-flex>
-          <v-btn @click="returnToWhats">Return to whats</v-btn>
+        <v-flex xs6 md4>
+          <v-btn @click="returnToWhats">
+            Whats
+          </v-btn>
         </v-flex>
+
         <v-flex>
-        <v-btn @click="goToReflections">Reflections</v-btn>
-        </v-flex>
-        <a @click="goToCalendar"> calendar! </a>
-        <v-flex>
-          {{what}}
-        </v-flex>
-        <div>
-        <add-to-calendar title=what
+          <add-to-calendar
                  location=""
                  :start="new Date()"
                  :end="new Date((new Date).setDate((new Date).getDate() + 1))"
@@ -36,11 +42,10 @@
             </google-calendar>
         </div>
         </add-to-calendar>
-    </div>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
+      </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -69,13 +74,16 @@ export default {
     goToReflections: function () {
       this.$store.dispatch('getReflections', {relatedItemType: 'what', relatedItemId: this.$store.state.whats.whatId})
       this.$router.push({path: '/reflections'})
+    },
+    getWhat: function () {
+      this.statement = this.$store.state.whats.whatStatement
     }
   },
-  //   beforeMount () {
-  //     this.getWhat()
-  //   },
+  beforeMount () {
+    this.getWhat()
+  },
   data: () => ({
-
+    statement: ''
   }),
   props: {
     source: String

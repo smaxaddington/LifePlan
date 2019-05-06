@@ -1,6 +1,10 @@
 <template>
   <v-app id="inspire">
     <v-content>
+      <font size = 6 color = "grey">
+        EDIT GOAL
+      </font>
+
       <v-container fluid fill-height>
         <v-layout
           justify-center

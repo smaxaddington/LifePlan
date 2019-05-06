@@ -1,14 +1,20 @@
 <template>
   <div>
-    <h1>Reflections</h1>
+    <font size = 6 color = "grey">
+      REFLECTIONS
+    </font>
+
     <v-container>
       <v-card flat v-for="ref in reflections" :key="ref._id">
         <v-layout row wrap>
-          <v-flex xs8>
-            <div>{{ ref.statement }}</div>
+          <v-flex xs6>
+            <div>{{ ref.statement.substr(0,30) }}</div>
           </v-flex>
           <v-flex xs4>
-            <v-btn @click="goToReflection(ref._id)">Go to Reflection</v-btn>
+            <div>{{ dateFormatter(ref.createdOn) }}</div>
+          </v-flex>
+          <v-flex xs2>
+            <v-btn @click="goToReflection(ref._id)">Go</v-btn>
           </v-flex>
 
         </v-layout>
@@ -43,6 +49,11 @@ export default {
     },
     addReflection: function () {
       this.$router.push({path: '/addReflection'})
+    },
+    dateFormatter: function (d) {
+      var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+      var date = new Date(d)
+      return date.toLocaleDateString('en-US', options)
     }
   },
   computed: {

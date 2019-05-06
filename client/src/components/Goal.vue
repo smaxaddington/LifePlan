@@ -1,56 +1,56 @@
 <template>
-  <v-app id="inspire">
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-        <v-flex>
-          <v-btn @click="goToGoals">Goals</v-btn>
+  <div>
+    <font size = 6 color = "grey">
+      GOAL
+    </font>
+
+    <div>Expected Outcome: {{expectedOutcome}}</div>
+    <div v-if="isComplete">Actual Outcome: {{actualOutcome}}</div>
+    <v-flex>
+          Expected Completion Date: {{expectedCompletionDate}}
+    </v-flex>
+    <v-flex v-if="isComplete">
+          Actual Completion Date: {{actualCompletionDate}}
+    </v-flex>
+    <v-container >
+      <v-layout  row wrap>
+        <v-flex  xs6 md3>
+          <v-btn  @click="goToGoals">Goals</v-btn>
         </v-flex>
-        <v-flex>
+        <v-flex xs6 md3>
           <v-btn @click="goToHow">How</v-btn>
         </v-flex>
-        <v-flex>
-          <v-btn @click="editGoal">Edit</v-btn>
-        </v-flex>
-        <v-flex>
-          <v-btn @click="completeGoal">Mark Complete</v-btn>
-        </v-flex>
-        <v-flex>
+        <v-flex xs6 md3>
           <v-btn @click="deleteGoal">Delete</v-btn>
         </v-flex>
-        <v-flex>
-        <v-btn @click="goToReflections">Reflections</v-btn>
+        <v-flex xs6 md3>
+          <v-btn @click="goToReflections">Reflections</v-btn>
         </v-flex>
-
-        <v-flex>
-          {{expectedCompletionDate}}
+        <v-flex v-if="!isComplete" xs6>
+          <v-btn @click="completeGoal">Mark Complete</v-btn>
         </v-flex>
-        <v-flex>
-          {{actualCompletionDate}}
+       <v-flex v-if="!isComplete" xs6>
+          <v-btn @click="editGoal">Edit</v-btn>
         </v-flex>
-        <v-flex>
-          {{expectedOutcome}}
-        </v-flex>
-        <v-flex>
-          {{actualOutcome}}
-        </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
   methods: {
     goToHow: function () {
+      this.$store.dispatch('setHowFromGoal', this.$store.state.goals.goalId)
       this.$router.push({ path: '/how' })
     },
     deleteGoal: function () {
-      this.$store.dispatch('deleteGoal')
+      if (this.$store.state.goals.showReturn === 1) {
+        this.$store.dispatch('deleteGoal', 1)
+      } else {
+        this.$store.dispatch('deleteGoal', 0)
+      }
+
       this.$router.push({ path: '/goals' })
     },
     // getHow: function () {
@@ -67,13 +67,21 @@ export default {
       this.$router.push({path: '/reflections'})
     },
     goToGoals: function () {
-      this.$store.dispatch('getGoals')
+      if (this.$store.state.goals.showReturn === 1) {
+        this.$store.dispatch('getGoals')
+      } else {
+        this.$store.dispatch('getAllGoals')
+      }
+
       this.$router.push({path: '/goals'})
+    },
+    getHow: function () {
+      this.$store.dispatch('getGoals')
     }
   },
-  //   beforeMount () {
-  //     this.getHow()
-  //   },
+  beforeMount () {
+    this.getHow()
+  },
   data: () => ({
     drawer: null
   }),
@@ -88,10 +96,27 @@ export default {
       return this.$store.state.goals.actualOutcome
     },
     actualCompletionDate () {
-      return this.$store.state.goals.actualCompletionDate
+      var options = { year: 'numeric', month: 'long', day: 'numeric' }
+      var date = new Date(this.$store.state.goals.actualCompletionDate)
+      return date.toLocaleDateString('en-US', options)
     },
     expectedCompletionDate () {
-      return this.$store.state.goals.expectedCompletionDate
+      var options = { year: 'numeric', month: 'long', day: 'numeric' }
+      var date = new Date(this.$store.state.goals.expectedCompletionDate)
+      return date.toLocaleDateString('en-US', options)
+    },
+    showReturn () {
+      return this.$store.state.goals.showReturn
+    },
+    goalId () {
+      return this.$store.state.goals.goalId
+    },
+    isComplete () {
+      if (this.$store.state.goals.actualOutcome === null || this.$store.state.goals.actualOutcome === '') {
+        return 0
+      } else {
+        return 1
+      }
     }
   }
 }

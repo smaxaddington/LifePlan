@@ -28,6 +28,8 @@ const actions = {
         if (data && data.length > 0) {
           // console.log(data[0])
           commit('hows', data)
+        } else {
+          commit('clearHowArray')
         }
       })
       .catch((err) => {
@@ -48,14 +50,60 @@ const actions = {
         console.log('Darn! There was an error getting how: ' + err)
       })
   },
+  async setHowFromGoal ({ commit, rootState }, payload) {
+    // Make API call... Pass in selected Month and Year + UserId in hearder...
+    // Once transaction data is retrieved... commit the mutation to update state...
+    const goalId = payload
+    const goalStmt = '/goal/' + goalId
+    console.log(goalId)
+    Vue.axios.get(goalStmt).then(function (resp) {
+      let data = resp.data
+      console.log(data)
+      const howStmt = '/how/' + data.relatedItemId
+      Vue.axios.get(howStmt).then(function (resp) {
+        let data = resp.data
+        commit('how', data)
+      })
+        .catch((err) => {
+          console.log('Darn! There was an error getting how: ' + err)
+        })
+    })
+      .catch((err) => {
+        console.log('Darn! There was an error getting goal: ' + err)
+      })
+  },
   deleteHow ({ commit, dispatch, state, rootState }) {
     // Add the logged in userId to the transaction payload...
+    Vue.axios.get('/goal/how/',
+      {headers: {'howId': state.howId}})
+      .then((resp) => {
+        let data = resp.data
+        // let whatStatement =
+
+        if (data && data.length > 0) {
+          // console.log(data[0])
+          var i
+          for (i = 0; i < data.length; i++) {
+            Vue.axios.delete('/goal/', {headers: {'id': data[i]._id}})
+              .then((resp) => {
+                dispatch('getGoals')
+              })
+              .catch((err) => {
+                console.log('Error deleting goal')
+                console.log(err)
+              })
+          }
+        }
+      })
+      .catch((err) => {
+        console.log('Darn! There was an error getting goals: ' + err)
+      })
     Vue.axios.delete('/how/', {headers: {'id': state.howId}})
       .then((resp) => {
         dispatch('getHows')
       })
       .catch((err) => {
-        console.log('Error saving how')
+        console.log('Error deleting how')
         console.log(err)
       })
   },
@@ -104,6 +152,10 @@ const mutations = {
     state.howId = data._id
     state.statement = data.statement
     state.howWhyId = data.whyId
+  },
+  clearHowArray (state) {
+    // Start by clearing the array...
+    state.hows = []
   }
 
 }

@@ -1,6 +1,9 @@
 <template>
   <v-app id="inspire">
-    <h1>Edit Why</h1>
+    <font size = 6 color = "grey">
+      EDIT WHY
+    </font>
+
     <v-content>
       <v-form>
         <v-container fluid grid-list-md>

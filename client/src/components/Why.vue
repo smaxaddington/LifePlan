@@ -1,14 +1,21 @@
 <template>
   <div>
-    <h1>{{why}}</h1>
+
+    <font size = 6 color = "grey">
+      WHY
+    </font>
+
+    <br>
+    <font size = 6>{{why}}</font>
     <v-container>
-      <v-layout row wrap>
+      <v-layout row wrap align-end>
         <v-flex xs12 md4>
           <v-btn @click="editWhy">
             Edit
           </v-btn>
         </v-flex>
         <v-flex xs12 md4>
+
           <v-btn @click="goToHows">
             Hows
           </v-btn>

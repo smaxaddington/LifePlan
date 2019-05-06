@@ -1,9 +1,9 @@
 <template>
   <v-app id="inspire">
     <v-content>
-        <v-flex>
-            {{this.statement}}
-        </v-flex>
+    <font size = 6 color = "grey">
+      ADD WHAT
+    </font>
       <v-form>
         <v-container fluid grid-list-md>
             <v-layout row wrap>

@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1>How</h1>
-    <div>{{this.$store.state.hows.statement}}</div>
+
+    <font size = 6 color = "grey">
+      HOW
+    </font>
+
+    <br>
+    <font size = 6>{{this.$store.state.hows.statement}}</font>
     <v-container>
       <v-layout row wrap>
         <v-flex xs6 md4>
@@ -60,6 +65,7 @@ export default {
       this.$router.push({path: '/reflections'})
     },
     goToGoals: function () {
+      this.$store.dispatch('setShowReturn')
       this.$store.dispatch('getGoals')
       this.$router.push({path: '/goals'})
     }

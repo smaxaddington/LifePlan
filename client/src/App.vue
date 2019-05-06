@@ -5,8 +5,8 @@
     <v-content>
       <router-view></router-view>
     </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; Mental Mute LLC</span>
+    <v-footer color="black" app>
+      <span class="white--text">&copy; Max Addington</span>
     </v-footer>
 
   </v-app>

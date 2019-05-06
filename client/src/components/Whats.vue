@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Whats</h1>
+    <font size = 6 color = "grey">
+      WHATS
+    </font>
     <v-container>
       <v-card flat v-for="what in whats" :key="what._id">
         <v-layout row wrap>

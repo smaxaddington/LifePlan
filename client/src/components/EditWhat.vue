@@ -1,25 +1,35 @@
 <template>
   <v-app id="inspire">
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-        <v-flex>
-          <v-btn @click="save">Save</v-btn>
-        </v-flex>
-        <v-flex>
-          <v-btn @click="cancel">Cancel</v-btn>
-        </v-flex>
+    <font size = 6 color = "grey">
+      EDIT WHAT
+    </font>
 
-        <v-flex>
-            <v-text-field :value="statement"
-            v-model="statement">
-            </v-text-field>
-        </v-flex>
-        </v-layout>
-      </v-container>
+    <v-content>
+      <v-layout row wrap>
+        <v-flex xs12 md12>
+          <v-form >
+            <v-container fluid grid-list-md>
+                <v-layout row wrap>
+                <v-flex>
+                    <v-textarea
+                    outline
+                    name="input-7-4"
+                    label="Statement"
+                    v-model="statement"
+                    ></v-textarea>
+                </v-flex>
+                </v-layout>
+            </v-container>
+        </v-form>
+      </v-flex>
+      <v-flex xs6 md6>
+        <v-btn @click="save">Save</v-btn>
+      </v-flex>
+      <v-flex xs6 md6>
+          <v-btn @click="cancel">Cancel</v-btn>
+      </v-flex>
+    </v-layout>
+
     </v-content>
   </v-app>
 </template>
@@ -36,7 +46,7 @@ export default {
     save: function () {
       // post
       this.$store.dispatch('updateWhat', this.statement)
-      this.$router.push({ path: '/what' })
+      this.$router.push({ path: '/whats' })
     },
     cancel: function () {
       this.$router.push({ path: '/what' })

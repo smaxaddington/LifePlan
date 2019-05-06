@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1>Hows</h1>
+    <font size = 6 color = "grey">
+      HOWS
+    </font>
+
     <v-container>
       <v-card flat v-for="how in hows" :key="how._id">
         <v-layout row wrap>

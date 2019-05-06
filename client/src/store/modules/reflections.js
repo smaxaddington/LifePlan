@@ -115,12 +115,13 @@ const actions = {
   },
   updateReflection ({ commit, dispatch, state, rootState }, payload) {
     // TODO: encrypt the user's password
+    var d = new Date()
     const refObj = {
       'statement': payload,
       'relatedItemType': state.relatedItemType,
       '_id': state.reflectionId,
       'relatedItemId': state.relatedItemId,
-      'createdOn': '03/1/2019'
+      'createdOn': d
     }
     Vue.axios.put('/reflection/' + state.reflectionId, refObj)
       .then((resp) => {
@@ -133,11 +134,14 @@ const actions = {
   },
   saveReflection ({ commit, dispatch, state, rootState }, payload) {
     // TODO: encrypt the user's password
+    var d = new Date()
+    var n = d.getDate()
+    console.log(n)
     const refObj = {
       'statement': payload.statement,
       'relatedItemType': state.relatedItemType,
       'relatedItemId': state.relatedItemId,
-      'createdOn': '03/1/2019'
+      'createdOn': n
     }
     Vue.axios.post('/reflection', refObj)
       .then((resp) => {
@@ -175,6 +179,7 @@ const mutations = {
     // Start by clearing the array...
     state.reflectionId = data._id
     state.refStatement = data.statement
+    state.createdOn = data.createdOn
   },
   clearReflections (state, rit) {
     state.relatedItemType = rit
