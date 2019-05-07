@@ -133,15 +133,12 @@ const actions = {
       })
   },
   saveReflection ({ commit, dispatch, state, rootState }, payload) {
-    // TODO: encrypt the user's password
     var d = new Date()
-    var n = d.getDate()
-    console.log(n)
     const refObj = {
       'statement': payload.statement,
       'relatedItemType': state.relatedItemType,
       'relatedItemId': state.relatedItemId,
-      'createdOn': n
+      'createdOn': d
     }
     Vue.axios.post('/reflection', refObj)
       .then((resp) => {
