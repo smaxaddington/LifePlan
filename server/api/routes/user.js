@@ -31,7 +31,6 @@ module.exports = function (router) {
     })
   })
 
-  // Update user document...
   router.put('/user/:id', function (req, res) {
     let qry = { _id: req.params.id }
     let doc = {

@@ -125,11 +125,6 @@ export default new Router({
       name: 'What',
       component: What
     },
-    // {
-    //   path: '/why',
-    //   name: 'Why',
-    //   component: Why
-    // },
     {
       path: '*',
       redirect: '/'
