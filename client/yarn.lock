@@ -6793,6 +6793,13 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-add-to-calendar@^1.0.4:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue-add-to-calendar/-/vue-add-to-calendar-1.0.7.tgz#3bbfd6bccbf20be80cf2daa44cf39bf3a540a222"
+  integrity sha512-5sCU/tzuhelRyuJkK8FzwMsB07+az//j57CLe0NSYf7nfulCr763S5CaFWU7JWOpBLCXf1M9VKiNJRbTSXNAog==
+  dependencies:
+    escope "^3.6.0"
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -7104,9 +7111,9 @@ xxhashjs@^0.2.1:
     cuint "^0.2.2"
 
 y18n@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
-  integrity sha1-bRX7qITAhnnA136I53WegR4H+kE=
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
+  integrity sha512-uGZHXkHnhF0XeeAPgnKfPv1bgKAYyVvmNL1xlKsPYZPaIHxGti2hHqvOCQv71XMsLxu1QjergkqogUnms5D3YQ==
 
 y18n@^4.0.0:
   version "4.0.0"
