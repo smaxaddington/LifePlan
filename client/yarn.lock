@@ -6056,10 +6056,10 @@ shebang-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
-shelljs@^0.7.6:
-  version "0.7.8"
-  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.8.tgz#decbcf874b0d1e5fb72e14b164a9683048e9acb3"
-  integrity sha1-3svPh0sNHl+3LhSxZKloMEjprLM=
+shelljs@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.5.tgz#de055408d8361bed66c669d2f000538ced8ee20c"
+  integrity sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==
   dependencies:
     glob "^7.0.0"
     interpret "^1.0.0"
@@ -6792,6 +6792,13 @@ vm-browserify@0.0.4:
   integrity sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=
   dependencies:
     indexof "0.0.1"
+
+vue-add-to-calendar@^1.0.4:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue-add-to-calendar/-/vue-add-to-calendar-1.0.7.tgz#3bbfd6bccbf20be80cf2daa44cf39bf3a540a222"
+  integrity sha512-5sCU/tzuhelRyuJkK8FzwMsB07+az//j57CLe0NSYf7nfulCr763S5CaFWU7JWOpBLCXf1M9VKiNJRbTSXNAog==
+  dependencies:
+    escope "^3.6.0"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
